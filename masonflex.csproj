@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <JSClosure Include="*.js" Exclude="masonflex.min.js" />
+  </ItemGroup>
+  <PropertyGroup>
+    <MinifiedJS>masonflex.min.js</MinifiedJS>
+  </PropertyGroup>
+  <Target Name="ClosureCompileMinified" AfterTargets="BabelCompile" BeforeTargets="Compile" Inputs="@(JSClosure)" Outputs="masonflex.min.js">
+    <Message Importance="high" Text="$(MSBuildProjectDirectory)\node_modules\.bin\google-closure-compiler --rewrite_polyfills=false --compilation_level SIMPLE_OPTIMIZATIONS @(JSClosure -> '--js %(Identity) ', ' ') --js_output_file masonflex.min.js --create_source_map masonflex.min.js.map" />
+    <Exec Command="$(MSBuildProjectDirectory)\node_modules\.bin\google-closure-compiler --rewrite_polyfills=false --compilation_level SIMPLE_OPTIMIZATIONS @(JSClosure -> '--js %(Identity) ', ' ') --js_output_file masonflex.min.js --create_source_map masonflex.min.js.map" />
+  </Target>
+</Project>

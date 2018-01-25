@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel='stylesheet' type="text/css" href='base.css' />
+    <link rel='stylesheet' type="text/css" href='../masonflex.css' />
+    <script src='imagelist.js'></script>
+    <script src='https://raw.githubusercontent.com/jgarber623/javascript-debounce/master/dist/javascript-debounce.min.js'></script>
+    <style type="text/css">
+.masonflex-panel, .masonflex-pad {
+  width: 33.33333%;
+}
+.masonflex-panel img {
+  width: 100%;
+}
+      .quoteContainer {
+        border: thin solid #000;
+        padding: 1.5em;
+        font-size: 22pt;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="masonflex" id='container'>
+    <script type="text/javascript">
+      for (var i = 0; i < window.quotes.length && i < window.test_images.length; i++) {
+        document.write('<div class="masonflex-panel"><img src="' + window.test_images[i] + window.test_image_suffixes['small'] + '" /></div>');
+        document.write('<div class="masonflex-panel"><div class="quoteContainer">' + window.quotes[i] + '</div></div>');
+      }
+    </script>
+    <script src="../masonflex.min.js"></script>
+    <script type="text/javascript" language="javascript">
+      var target = document.getElementById('container');
+      var djs = new MasonFlex(target, {});
+      window.addEventListener('load', function() { djs.layout(); });
+    </script>
+  </body>
+</html>
