@@ -35,7 +35,7 @@ Masonflex frequently does not require any options or additional coding.
 ## Options
 
 | property name | description | default value |
------------------------------------------------
+|---------------|-------------|---------------|
 | rootMargin | padding around the masonry container used for visibility determintation | 10px |
 | threshold | size of element, as a percentage, that must be in the viewport to be considered visible | 0.001 |
 | panelClass | classname attached to children of the container element | masonflex-panel |
