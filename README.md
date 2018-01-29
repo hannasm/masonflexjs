@@ -43,8 +43,6 @@ Masonflex frequently does not require any options or additional coding.
 
 ## Dependencies
 
- * A debounce() function must be loaded to the page before importing masonflex. [you might try this one](https://github.com/jgarber623/javascript-debounce)
-
  * Masonflex depends on intersection observer, which on older browsers requires a polyfill - [you could try this one](https://github.com/w3c/IntersectionObserver/tree/master/polyfill)
 
  * Masonflex depends on mutation observer, which on older browsers requires a polyfill - [you could try this one](https://github.com/megawac/MutationObserver.js)
@@ -71,4 +69,5 @@ There are a *growing* list of tests available in the tests subdirectory. Most of
 
 ## Release Notes
 
+* 1.0.0-rc.2 - removing debounce function dependency
 * 1.0.0-rc.1 - first version released

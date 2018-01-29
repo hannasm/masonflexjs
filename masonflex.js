@@ -1,4 +1,4 @@
-/** @preserve MasonFlexJS - v.1.0.0-rc.1
+/** @preserve MasonFlexJS - v.1.0.0-rc.2
  *
  * https://github.com/hannasm/masonflexjs
  **/
@@ -150,14 +150,14 @@
       * Resets and lays out elements
     */
 
-    MasonFlex.prototype.layout = debounce(function layout() {
+    MasonFlex.prototype.layout = function layout() {
       if (!this.visible) { return; }
 
       this.__reset();
       this.__populateHeights();
       this.__setLayout();
       this.__pad();
-    }, 250);
+    };
 
     MasonFlex.prototype.observeIntersection = function(entries, observer) {
       var oldVisible = this.visible;
@@ -226,7 +226,8 @@
             }
             if (skip) { continue; }
           }
-          // we shamelessly call this on any change we haven't filtered out above, and let debounce() regulate
+          // we shamelessly call this on any change we haven't filtered out above, there are cases
+          // where it would be wise to use a debouncer, but this has also caused problems in places
           _self.layout();
           return;
         }
