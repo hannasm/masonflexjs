@@ -1,4 +1,4 @@
-/** @preserve MasonFlexJS - v.1.0.0-rc.2
+/** @preserve MasonFlexJS - v.1.0.0-rc.3
  *
  * https://github.com/hannasm/masonflexjs
  **/
@@ -6,6 +6,7 @@
   var MasonFlex = function () {
     function MasonFlex(el, options) {
       this.visible = true;
+      this.pendingCount = 0;
       this.rootMargin = options.rootMargin || '10px';
       this.threshold = options.threshold || '0.001';
 			this.panelClass = options.panelClass || 'masonflex-panel';
@@ -19,6 +20,10 @@
       this.listenResize();
       this.listenVisibility();
       this.listenDomChange();
+
+      this.intervalid = setInterval(function(self) {
+        self.handleLayout();
+      }, 250, this);
     }
     /**
       * Reset the layout by removing padding elements, resetting heights
@@ -152,6 +157,11 @@
 
     MasonFlex.prototype.layout = function layout() {
       if (!this.visible) { return; }
+      this.pendingCount += 1;
+    };
+    MasonFlex.prototype.handleLayout = function() {
+      if (this.pendingCount <= 0) { return; }
+      this.pendingCount = 0;
 
       this.__reset();
       this.__populateHeights();
