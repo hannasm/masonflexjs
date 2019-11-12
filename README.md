@@ -69,6 +69,8 @@ There are a *growing* list of tests available in the tests subdirectory. Most of
 
 ## Release Notes
 
+* 1.0.0-rc.5 - fix calculation issue when elements in layout are not of fixed width
+* 1.0.0-rc.4 - fix mutation observer error that ocurs when mutations are observed while masonry layout is empty
 * 1.0.0-rc.3 - added a different setInterval based debounce function which seems to have better performance characteristics
 * 1.0.0-rc.2 - removing debounce function dependency
 * 1.0.0-rc.1 - first version released

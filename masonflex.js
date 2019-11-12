@@ -1,4 +1,4 @@
-/** @preserve MasonFlexJS - v.1.0.0-rc.3
+/** @preserve MasonFlexJS - v.1.0.0-rc.4
  *
  * https://github.com/hannasm/masonflexjs
  **/
@@ -63,6 +63,8 @@
       var _ccs = getComputedStyle(this.container);
       var cw = parseFloat(_ccs.width);
 
+      if (!panels || !panels.length || panels.length <= 0) { return; }
+
       var mw = null;
       var mph = null;
       var pp = [];
@@ -84,7 +86,7 @@
         height += parseFloat(_getComputedStyle.marginTop);
 
         var width = parseFloat(_getComputedStyle.width);
-        mw = Math.min(mw || width, width);
+        mw = Math.max(mw || width, width);
         mph = Math.min(mph || height, height);
         pp.push( {
           index: p,
@@ -95,6 +97,7 @@
       }
 
       var colCount = Math.floor(cw / mw);
+
       for (var j = 0; j < colCount; j++) {
         heights[j] = 0; 
       }
@@ -214,8 +217,10 @@
           if (mutation.type == 'attributes' && mutation.attributeName == 'style') { 
             var skip = false;
             if (mutation.target == _self.container) { continue; }
-            for (var j = 0; j < _self.panels.length; j++) {
-              if (mutation.target == _self.panels[j]) { skip = true; break; }
+            if (_self.panels) {
+              for (var j = 0; j < _self.panels.length; j++) {
+                if (mutation.target == _self.panels[j]) { skip = true; break; }
+              }
             }
             if (skip) { continue; }
           }
